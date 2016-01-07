@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form, IViewFor<HomeViewModel>
+    public partial class Form1 : Form, IViewFor<ShellViewModel>
     {
         public Form1()
         {
@@ -25,19 +25,19 @@ namespace WindowsFormsApplication1
                 d(this.BindCommand(VM, x => x.OKCmd, x => x.btnOK));
             });
 
-            VM = new HomeViewModel();
+            VM = new ShellViewModel();
 
         }
 
-        public HomeViewModel VM { get; set; }
+        public ShellViewModel VM { get; set; }
 
         object IViewFor.ViewModel
         {
             get { return VM; }
-            set { VM = (HomeViewModel)value; }
+            set { VM = (ShellViewModel)value; }
         }
 
-        HomeViewModel IViewFor<HomeViewModel>.ViewModel
+        ShellViewModel IViewFor<ShellViewModel>.ViewModel
         {
             get { return VM; }
             set { VM = value; }
