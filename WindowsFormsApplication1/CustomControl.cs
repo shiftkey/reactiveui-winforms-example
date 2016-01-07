@@ -31,14 +31,4 @@ namespace WindowsFormsApplication1
 
         public ChildViewModel ViewModel { get; set; }
     }
-
-    public class ChildViewModel : ReactiveObject
-    {
-        string _name;
-        public string Name
-        {
-            get { return _name; }
-            set { this.RaiseAndSetIfChanged(ref _name, value); }
-        }
-    }
 }

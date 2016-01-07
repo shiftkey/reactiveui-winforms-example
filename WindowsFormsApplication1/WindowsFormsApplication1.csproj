@@ -79,6 +79,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildViewModel.cs" />
     <Compile Include="CustomControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
