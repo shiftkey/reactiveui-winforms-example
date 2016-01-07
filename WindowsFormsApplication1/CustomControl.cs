@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ReactiveUI;
 
 namespace WindowsFormsApplication1
@@ -17,10 +9,10 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
-            this.WhenActivated(d =>
-            {
-                d(this.OneWayBind(ViewModel, vm => vm.Name, v => v.name.Text));
-            });
+            // WhenActivated inside a control is currently breaking
+            // the designer. crying forever, but until i investigate
+            // further this needs to be removed
+            this.OneWayBind(ViewModel, vm => vm.Name, v => v.name.Text);
         }
 
         object IViewFor.ViewModel
