@@ -11,8 +11,10 @@ namespace WindowsFormsApplication1
             var canExecute = this.WhenAnyValue(vm => vm.EnteredText)
                 .Select(s => !string.IsNullOrWhiteSpace(s));
 
+            Child = new ChildViewModel();
+
             OKCmd = ReactiveCommand.Create(canExecute);
-            OKCmd.Subscribe(_ => Status = EnteredText + " is saved.");
+            OKCmd.Subscribe(_ => Child.Name = "You entered " + EnteredText);
         }
 
         string _enteredText;
@@ -30,5 +32,7 @@ namespace WindowsFormsApplication1
         }
 
         public ReactiveCommand<object> OKCmd { get; private set; }
+
+        public ChildViewModel Child { get; private set; }
     }
 }

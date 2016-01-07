@@ -19,28 +19,23 @@ namespace WindowsFormsApplication1
 
             this.WhenActivated(d =>
             {
-                // Bind the view to the ReactiveUI viewmodel
-                d(this.Bind(VM, x => x.EnteredText, x => x.textBoxMyInput.Text));
-                d(this.Bind(VM, x => x.Status, x => x.statusTrayMessage.Text));
-                d(this.BindCommand(VM, x => x.OKCmd, x => x.btnOK));
+                // at the root, let's do something
+                d(this.Bind(ViewModel, x => x.EnteredText, x => x.textBoxMyInput.Text));
+                d(this.BindCommand(ViewModel, x => x.OKCmd, x => x.btnOK));
+
+                // we'll propagate the result to the child control
+                d(this.OneWayBind(ViewModel, vm => vm.Child, v => v.child.ViewModel));
             });
 
-            VM = new ShellViewModel();
-
+            ViewModel = new ShellViewModel();
         }
 
-        public ShellViewModel VM { get; set; }
+        public ShellViewModel ViewModel { get; set; }
 
         object IViewFor.ViewModel
         {
-            get { return VM; }
-            set { VM = (ShellViewModel)value; }
-        }
-
-        ShellViewModel IViewFor<ShellViewModel>.ViewModel
-        {
-            get { return VM; }
-            set { VM = value; }
+            get { return ViewModel; }
+            set { ViewModel = (ShellViewModel)value; }
         }
     }
 }
