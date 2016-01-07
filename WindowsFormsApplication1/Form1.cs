@@ -17,12 +17,16 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
+            this.WhenActivated(d =>
+            {
+                // Bind the view to the ReactiveUI viewmodel
+                d(this.Bind(VM, x => x.EnteredText, x => x.textBoxMyInput.Text));
+                d(this.Bind(VM, x => x.Status, x => x.statusTrayMessage.Text));
+                d(this.BindCommand(VM, x => x.OKCmd, x => x.btnOK));
+            });
+
             VM = new HomeViewModel();
 
-            // Bind the view to the ReactiveUI viewmodel
-            this.Bind(VM, x => x.EnteredText, x => x.textBoxMyInput.Text);
-            this.Bind(VM, x => x.Status, x => x.statusTrayMessage.Text);
-            this.BindCommand(VM, x => x.OKCmd, x => x.btnOK);
         }
 
         public HomeViewModel VM { get; set; }
