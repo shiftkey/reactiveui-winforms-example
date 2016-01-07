@@ -31,20 +31,21 @@
             this.textBoxMyInput = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.statusTray = new System.Windows.Forms.StatusStrip();
-            this.statusTrayMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusTray.SuspendLayout();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.child = new WindowsFormsApplication1.CustomControl();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxMyInput
             // 
-            this.textBoxMyInput.Location = new System.Drawing.Point(131, 65);
+            this.textBoxMyInput.Location = new System.Drawing.Point(3, 3);
             this.textBoxMyInput.Name = "textBoxMyInput";
             this.textBoxMyInput.Size = new System.Drawing.Size(100, 26);
             this.textBoxMyInput.TabIndex = 0;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(131, 114);
+            this.btnOK.Location = new System.Drawing.Point(3, 35);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 29);
             this.btnOK.TabIndex = 1;
@@ -54,31 +55,42 @@
             // statusTray
             // 
             this.statusTray.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusTrayMessage});
-            this.statusTray.Location = new System.Drawing.Point(0, 216);
+            this.statusTray.Location = new System.Drawing.Point(0, 908);
             this.statusTray.Name = "statusTray";
-            this.statusTray.Size = new System.Drawing.Size(278, 28);
+            this.statusTray.Size = new System.Drawing.Size(1507, 22);
             this.statusTray.TabIndex = 2;
             this.statusTray.Text = "statusStrip1";
             // 
-            // statusTrayMessage
+            // flowLayoutPanel1
             // 
-            this.statusTrayMessage.Name = "statusTrayMessage";
-            this.statusTrayMessage.Size = new System.Drawing.Size(0, 23);
+            this.flowLayoutPanel1.Controls.Add(this.textBoxMyInput);
+            this.flowLayoutPanel1.Controls.Add(this.btnOK);
+            this.flowLayoutPanel1.Controls.Add(this.child);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1483, 885);
+            this.flowLayoutPanel1.TabIndex = 3;
+            // 
+            // child
+            // 
+            this.child.Location = new System.Drawing.Point(3, 70);
+            this.child.Name = "child";
+            this.child.Size = new System.Drawing.Size(784, 502);
+            this.child.TabIndex = 2;
+            this.child.ViewModel = null;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.ClientSize = new System.Drawing.Size(1507, 930);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.statusTray);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.textBoxMyInput);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.statusTray.ResumeLayout(false);
-            this.statusTray.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,7 +101,8 @@
         private System.Windows.Forms.TextBox textBoxMyInput;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.StatusStrip statusTray;
-        private System.Windows.Forms.ToolStripStatusLabel statusTrayMessage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private CustomControl child;
     }
 }
 

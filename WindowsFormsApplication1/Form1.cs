@@ -11,32 +11,31 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form, IViewFor<HomeViewModel>
+    public partial class Form1 : Form, IViewFor<ShellViewModel>
     {
         public Form1()
         {
             InitializeComponent();
 
-            VM = new HomeViewModel();
+            this.WhenActivated(d =>
+            {
+                // at the root, let's do something
+                d(this.Bind(ViewModel, x => x.EnteredText, x => x.textBoxMyInput.Text));
+                d(this.BindCommand(ViewModel, x => x.OKCmd, x => x.btnOK));
 
-            // Bind the view to the ReactiveUI viewmodel
-            this.Bind(VM, x => x.EnteredText, x => x.textBoxMyInput.Text);
-            this.Bind(VM, x => x.Status, x => x.statusTrayMessage.Text);
-            this.BindCommand(VM, x => x.OKCmd, x => x.btnOK);
+                // we'll propagate the result to the child control
+                d(this.OneWayBind(ViewModel, vm => vm.Child, v => v.child.ViewModel));
+            });
+
+            ViewModel = new ShellViewModel();
         }
 
-        public HomeViewModel VM { get; set; }
+        public ShellViewModel ViewModel { get; set; }
 
         object IViewFor.ViewModel
         {
-            get { return VM; }
-            set { VM = (HomeViewModel)value; }
-        }
-
-        HomeViewModel IViewFor<HomeViewModel>.ViewModel
-        {
-            get { return VM; }
-            set { VM = value; }
+            get { return ViewModel; }
+            set { ViewModel = (ShellViewModel)value; }
         }
     }
 }
